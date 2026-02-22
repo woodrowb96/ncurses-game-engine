@@ -1,7 +1,10 @@
 #include <iostream>
 
+#include "screen.h"
+
 int main()
 {
-  std::cout << "HELLO WORLD\n";
+  Screen screen;
+  screen.print("HELLO WORLD, from ncurses!");
   return 0;
 }
