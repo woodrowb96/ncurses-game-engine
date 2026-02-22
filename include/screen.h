@@ -3,6 +3,9 @@
 
 #include <ncurses.h>
 
+namespace ncurses_game_eng
+{
+
 /********************************** SCREEN ***********************************/
 // The screen class is our game engines interface to the outside world.
 //
@@ -30,5 +33,7 @@ class Screen
   private:
     InputMode m_input_mode {InputMode::Blocking};
 };
+
+} //end namespace ncurses_game_eng
 
 #endif

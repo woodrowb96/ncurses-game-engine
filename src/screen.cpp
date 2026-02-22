@@ -2,7 +2,8 @@
 
 #include <ncurses.h>
 
-/************************************ SCREEN ************************************/
+namespace ncurses_game_eng
+{
 
 Screen::Screen()
 {
@@ -56,3 +57,5 @@ int Screen::get_ch(InputMode mode)
   nodelay(stdscr, m_input_mode == InputMode::NonBlocking);    //go back to class wide mode
   return ch;
 }
+
+} //end namespace ncurses_game_eng

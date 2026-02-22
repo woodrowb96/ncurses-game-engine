@@ -1,5 +1,7 @@
 #include "screen.h"
 
+using namespace ncurses_game_eng;
+
 int main()
 {
   Screen screen;
