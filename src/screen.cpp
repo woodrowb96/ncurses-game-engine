@@ -1,5 +1,6 @@
 #include "screen.h"
 
+#include <vector>
 #include <ncurses.h>
 
 namespace ncurses_game_eng
@@ -12,8 +13,7 @@ Screen::Screen()
   noecho();              //dont echo typed chars to the screen
   keypad(stdscr, TRUE);  //lets us read special keys (funct, arrow ...)
   curs_set(0);           //dont print the cursor
-  //make sure we are using m_input_mode's blocking mode
-  nodelay(stdscr,m_input_mode == InputMode::NonBlocking);
+  set_blocking(DEFAULT_BLOCKING_MODE);
 }
 
 Screen::~Screen()
@@ -27,9 +27,9 @@ void Screen::clear_screen()
   refresh();   //refresh the screen to actually print the changes
 }
 
-void Screen::print_str(const char* text)
+void Screen::print_str(const std::string& str)
 {
-  addstr(text);
+  addstr(str.c_str());
   refresh();
 }
 
@@ -39,23 +39,28 @@ void Screen::print_ch(int ch)
   refresh();
 }
 
-void Screen::set_input_mode(InputMode mode)
+int Screen::get_ch(BlockingMode mode)
 {
-  m_input_mode = mode;
-  nodelay(stdscr, m_input_mode == InputMode::NonBlocking);
-}
-
-int Screen::get_ch()
-{
-  return getch();
-}
-
-int Screen::get_ch(InputMode mode)
-{
-  nodelay(stdscr, mode == InputMode::NonBlocking);            //set input mode temperarily
+  set_blocking(mode);
   int ch = getch();
-  nodelay(stdscr, m_input_mode == InputMode::NonBlocking);    //go back to class wide mode
+  set_blocking(DEFAULT_BLOCKING_MODE);
   return ch;
+}
+
+std::string Screen::get_str(int buffer_size)
+{
+  std::vector<char> buffer(buffer_size);
+
+  set_blocking(BlockingMode::Blocking);                             //make sure we are blocking
+  getnstr(buffer.data(), buffer_size - 1);                          //read the string into the buffer
+  set_blocking(DEFAULT_BLOCKING_MODE);                             //make sure we are blocking
+
+  return std::string(buffer.data());
+}
+
+void Screen::set_blocking(BlockingMode mode)
+{
+  nodelay(stdscr, BlockingMode::NonBlocking == mode);
 }
 
 } //end namespace ncurses_game_eng
