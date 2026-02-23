@@ -26,6 +26,13 @@ class Screen
     Screen();
     ~Screen();
 
+    //we dont want any copying or moving, because
+    //we only want one screen object to exist
+    Screen(const Screen& other) = delete;
+    Screen& operator=(const Screen& other) = delete;
+    Screen(Screen&& other) = delete;
+    Screen& operator=(Screen&& other) = delete;
+
     //user output
     void clear();
     void refresh();

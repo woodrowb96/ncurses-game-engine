@@ -33,6 +33,13 @@ class Window
   friend class Screen;
 
   public:
+    //we dont want any copying or moving.
+    //We want to make sure only one Window obj exists per ncurses WINDOW*
+    Window(const Window& other) = delete;
+    Window& operator=(const Window& other) = delete;
+    Window(Window&& other) = delete;
+    Window& operator=(Window&& other) = delete;
+
     //window attribute getters
     int get_height() const;
     int get_width() const;
