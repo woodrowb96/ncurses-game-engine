@@ -1,5 +1,6 @@
 #include "screen.h"
 #include "coord.h"
+#include "window.h"
 
 #include <string>
 
@@ -10,54 +11,50 @@ using namespace ncurses_game_eng;
 
 int main()
 {
-  string s;
-
   Screen screen;
-  screen.print_str("HELLO WORLD, from ncurses!");
+  screen.add_str("HELLO WORLD, from ncurses!");
   screen.get_ch();
+  screen.add_str("\n");
+  screen.add_str("Hello again!");
+  screen.get_ch();
+
+
+  Window* win_1 = screen.create_window(20,5);
+  int h = win_1->get_height();
+  int w = win_1->get_width();
+  Coord win_curs = win_1->get_cursor_pos();
 
   screen.clear();
-  Coord begining = screen.get_cursor_pos();
-  screen.print_str("Cursor_position at start of this line: " + to_string(begining) + "\n");
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
+  screen.add_str(to_string(h));
+  screen.add_str("\n");
+  screen.add_str(to_string(w));
+  screen.add_str("\n");
+  screen.add_str(to_string(win_curs));
   screen.get_ch();
 
-  screen.clear();
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
+  win_1->add_str("height: " + to_string(h));
+  win_1->add_str("\n");
+  win_1->add_str("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+  win_1->refresh();
   screen.get_ch();
 
-  Coord pos = screen.get_cursor_pos();
+  Coord win_2_pos = win_1->get_pos();
+  win_2_pos.x += 3;
+  win_2_pos.y += 1;
+  Window* win_2 = screen.create_window(3,8,win_2_pos);
+  h = win_2->get_height();
+  w = win_2->get_width();
+  win_curs = win_2->get_cursor_pos();
 
-  screen.move_cursor({pos.x + 1, pos.y + 1});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
+  win_2->add_str("height: " + to_string(h));
+  win_2->add_str("\n");
+  win_2->add_str("\n");
+  win_2->refresh();
   screen.get_ch();
 
-  screen.move_cursor({pos.x - 5, pos.y + 2});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
+  win_1->clear();
+  win_1->refresh();
   screen.get_ch();
-
-  screen.move_cursor({pos.x - 10, pos.y});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
-  screen.get_ch();
-  
-  screen.move_cursor({pos.x + 5, pos.y - 5});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
-  screen.get_ch();
-
-  screen.move_cursor({pos.x + 100, pos.y + 6});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
- 
-  screen.move_cursor({pos.x + 500, pos.y + 500});
-  screen.print_str("Cursor_position at end of this line:");
-  screen.print_str(to_string(screen.get_cursor_pos()));
-  screen.get_ch(); screen.get_ch();
 
   return 0;
 }

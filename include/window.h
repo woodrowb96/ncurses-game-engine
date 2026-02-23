@@ -3,6 +3,7 @@
 
 #include "coord.h"
 
+#include <string>
 #include <ncurses.h>
 
 namespace ncurses_game_eng
@@ -10,6 +11,13 @@ namespace ncurses_game_eng
 
 /************************************ WINDOW ************************************/
 // A wrapper around the ncurses window.
+//
+// The window class lets us:
+//  - print output onto the window
+//    -- move the cursor around the window
+//    -- add strings and chars to the window
+//    -- clear the window 
+//    -- refresh the window to print adds and clears onto the screen
 //
 // Note:
 //  - Constructor and destructor are private. We dont want users creating windows
@@ -20,17 +28,31 @@ namespace ncurses_game_eng
 
 class Window
 {
+  friend class Screen;
+
   public:
+    //window attribute getters
+    int get_height() const;
+    int get_width() const;
+    Coord get_pos() const;          //window position relative to the stdscrn
+    Coord get_cursor_pos() const;
+
+    //user output
+    void clear();
+    void refresh();
+    void move_cursor(const Coord& pos);
+    void add_ch(int ch);
+    void add_str(const std::string& str);
 
   private:
-    Window(int width, int height, Coord pos = {0,0});
+    Window(int width, int height, Coord pos);
     ~Window();
 
-    //ncurses window ptr, dimension, and stdscr position
-    WINDOW* m_win;
+    //window and its attributes
+    WINDOW* m_win;  //pointer to the ncurses window object
     int m_width;
     int m_height;
-    Coord m_pos;
+    Coord m_pos;    //window position relative to the stdscrn coords
 };
 
 } //endnamespace

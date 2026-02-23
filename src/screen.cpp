@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "coord.h"
 
 #include <vector>
 #include <ncurses.h>
@@ -20,31 +21,32 @@ Screen::Screen()
 
 Screen::~Screen()
 {
+  for(Window* w : m_windows) {
+    if(w) {
+      delete w;
+    }
+  }
   endwin();        //end the stdscrn
 }
 
-void Screen::print_str(const std::string& str)
-{
-  addstr(str.c_str());
-  refresh();
-}
-
-void Screen::print_ch(int ch)
-{
-  addch(ch);
-  refresh();
-}
+//USER OUTPUT
 
 void Screen::clear()
 {
   ::clear();
-  refresh();   //refresh the screen to actually print the changes
 }
 
-void Screen::move_cursor(const Coord& coord)
+void Screen::refresh()
 {
-  move(coord.y, coord.x);
+  ::refresh();
 }
+
+void Screen::add_str(const std::string& str)
+{
+  addstr(str.c_str());
+}
+
+//USER INPUT
 
 int Screen::get_ch(BlockingMode mode)
 {
@@ -65,25 +67,31 @@ std::string Screen::get_str(int buffer_size)
   return std::string(buffer.data());
 }
 
+//SCREEN ATTRIBUTE GETTERS
+
 int Screen::get_height() const
 {
-  [[maybe_unused]] int h {-1}, w {-1};
+  int h {-1};
+  [[maybe_unused]] int w {-1};
   getmaxyx(stdscr, h, w);
   return h;
 }
 
 int Screen::get_width() const
 {
-  [[maybe_unused]] int h {-1}, w {-1};
+  [[maybe_unused]] int h {-1};
+  int w {-1};
   getmaxyx(stdscr, h, w);
   return w;
 }
 
-Coord Screen::get_cursor_pos() const
+//MANAGE WINDOWS
+
+Window* Screen::create_window(int width, int height, Coord pos)
 {
-  Coord pos {-1,-1};
-  getyx(stdscr, pos.y, pos.x);
-  return pos;
+  Window* win = new Window(width, height, pos);
+  m_windows.push_back(win);
+  return win;
 }
 
 //PRIVATE

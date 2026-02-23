@@ -2,8 +2,10 @@
 #define SCREEN_H
 
 #include <string>
+#include <vector>
 
 #include "coord.h"
+#include "window.h"
 
 namespace ncurses_game_eng {
 
@@ -11,8 +13,9 @@ namespace ncurses_game_eng {
 // The screen class is our game engines interface to the outside world.
 //
 // The screen class lets us:
-//  - print output to the screen
+//  - create and manage ncurses subwindows
 //  - get input from users
+//  - do some simple prints of strings to the stdscrn
 /********************************************************************************/
 
 enum class BlockingMode {Blocking, NonBlocking};
@@ -24,10 +27,9 @@ class Screen
     ~Screen();
 
     //user output
-    void print_str(const std::string& str);
-    void print_ch(int ch);
     void clear();
-    void move_cursor(const Coord& coord);
+    void refresh();
+    void add_str(const std::string& str);
 
     //user input
     int get_ch(BlockingMode mode = DEFAULT_BLOCKING_MODE);
@@ -36,10 +38,14 @@ class Screen
     //screen attribute getters
     int get_height() const;
     int get_width() const;
-    Coord get_cursor_pos() const;
+
+    //manage windows
+    Window* create_window(int width, int height, Coord pos = {0,0});
 
   private:
     static constexpr BlockingMode DEFAULT_BLOCKING_MODE {BlockingMode::Blocking};
+
+    std::vector<Window*> m_windows;
 
     void set_blocking(BlockingMode mode);
 };
