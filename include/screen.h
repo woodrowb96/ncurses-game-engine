@@ -16,6 +16,7 @@ namespace ncurses_game_eng {
 //  - create and manage ncurses subwindows
 //  - get input from users
 //  - do some simple prints of strings to the stdscrn
+//  - interface with some ncurses system facilities
 /********************************************************************************/
 
 enum class BlockingMode {Blocking, NonBlocking};
@@ -45,6 +46,9 @@ class Screen
     //screen attribute getters
     int get_height() const;
     int get_width() const;
+
+    //system utils
+    void sleep(int ms);
 
     //manage windows
     Window* create_window(int width, int height, Coord pos = {0,0});

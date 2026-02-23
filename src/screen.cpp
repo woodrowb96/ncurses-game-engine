@@ -94,6 +94,13 @@ Window* Screen::create_window(int width, int height, Coord pos)
   return win;
 }
 
+//SYTEM UTILS
+
+void Screen::sleep(int ms)
+{
+  napms(ms);
+}
+
 //PRIVATE
 
 void Screen::set_blocking(BlockingMode mode)

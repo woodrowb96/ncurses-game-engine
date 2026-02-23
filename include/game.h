@@ -1,3 +1,6 @@
+#include "screen.h"
+#include "window.h"
+
 namespace ncurses_game_eng
 {
 
@@ -18,7 +21,12 @@ class Game
     Game(Game&& other) = delete;
     Game& operator=(Game&& other) = delete;
 
+    //game loop
+    void run();
+
   private:
+    Screen m_screen;
+    Window* m_win;    //our main window (well expand how we manage windows later)
 };
 
 }//end namespace
