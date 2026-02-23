@@ -23,12 +23,6 @@ Screen::~Screen()
   endwin();        //end the stdscrn
 }
 
-void Screen::clear()
-{
-  ::clear();
-  refresh();   //refresh the screen to actually print the changes
-}
-
 void Screen::print_str(const std::string& str)
 {
   addstr(str.c_str());
@@ -39,6 +33,17 @@ void Screen::print_ch(int ch)
 {
   addch(ch);
   refresh();
+}
+
+void Screen::clear()
+{
+  ::clear();
+  refresh();   //refresh the screen to actually print the changes
+}
+
+void Screen::move_cursor(const Coord& coord)
+{
+  move(coord.y, coord.x);
 }
 
 int Screen::get_ch(BlockingMode mode)

@@ -23,16 +23,17 @@ class Screen
     Screen();
     ~Screen();
 
-    //print output
-    void clear();
+    //user output
     void print_str(const std::string& str);
     void print_ch(int ch);
+    void clear();
+    void move_cursor(const Coord& coord);
 
-    //get user input
+    //user input
     int get_ch(BlockingMode mode = DEFAULT_BLOCKING_MODE);
     std::string get_str(int buffer_size = 256);
 
-    //attribute getters
+    //screen attribute getters
     int get_height() const;
     int get_width() const;
     Coord get_cursor_pos() const;
