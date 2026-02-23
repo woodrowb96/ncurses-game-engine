@@ -4,7 +4,9 @@
 #include "coord.h"
 
 #include <string>
-#include <ncurses.h>
+
+//forward declare a WINDOW from ncurses
+typedef struct _win_st WINDOW;
 
 namespace ncurses_game_eng
 {
