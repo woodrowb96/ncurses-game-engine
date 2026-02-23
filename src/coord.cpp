@@ -1,5 +1,7 @@
 #include "coord.h"
 
+#include <string>
+
 namespace ncurses_game_eng
 {
 
@@ -21,6 +23,11 @@ bool Coord::operator==(const Coord& other) const
 bool Coord::operator!=(const Coord& other) const
 {
   return !(*this == other);
+}
+
+std::string to_string(const Coord& coord)
+{
+  return "(" + std::to_string(coord.x) + "," + std::to_string(coord.y) + ")";
 }
 
 } //end namespace

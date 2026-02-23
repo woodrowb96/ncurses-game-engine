@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "coord.h"
+
 namespace ncurses_game_eng {
 
 /********************************** SCREEN ***********************************/
@@ -21,12 +23,19 @@ class Screen
     Screen();
     ~Screen();
 
-    void clear_screen();
+    //print output
+    void clear();
     void print_str(const std::string& str);
     void print_ch(int ch);
 
+    //get user input
     int get_ch(BlockingMode mode = DEFAULT_BLOCKING_MODE);
     std::string get_str(int buffer_size = 256);
+
+    //attribute getters
+    int get_height() const;
+    int get_width() const;
+    Coord get_cursor_pos() const;
 
   private:
     static constexpr BlockingMode DEFAULT_BLOCKING_MODE {BlockingMode::Blocking};

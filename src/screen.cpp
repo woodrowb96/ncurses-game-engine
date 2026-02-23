@@ -6,6 +6,8 @@
 namespace ncurses_game_eng
 {
 
+//PUBLIC
+
 Screen::Screen()
 {
   initscr();             //start the stdscrn
@@ -21,9 +23,9 @@ Screen::~Screen()
   endwin();        //end the stdscrn
 }
 
-void Screen::clear_screen()
+void Screen::clear()
 {
-  clear();
+  ::clear();
   refresh();   //refresh the screen to actually print the changes
 }
 
@@ -51,12 +53,35 @@ std::string Screen::get_str(int buffer_size)
 {
   std::vector<char> buffer(buffer_size);
 
-  set_blocking(BlockingMode::Blocking);                             //make sure we are blocking
-  getnstr(buffer.data(), buffer_size - 1);                          //read the string into the buffer
-  set_blocking(DEFAULT_BLOCKING_MODE);                             //make sure we are blocking
+  set_blocking(BlockingMode::Blocking);     //make sure we are blocking
+  getnstr(buffer.data(), buffer_size - 1);  //read the string into the buffer
+  set_blocking(DEFAULT_BLOCKING_MODE);      //go back to default blocking mode
 
   return std::string(buffer.data());
 }
+
+int Screen::get_height() const
+{
+  [[maybe_unused]] int h {-1}, w {-1};
+  getmaxyx(stdscr, h, w);
+  return h;
+}
+
+int Screen::get_width() const
+{
+  [[maybe_unused]] int h {-1}, w {-1};
+  getmaxyx(stdscr, h, w);
+  return w;
+}
+
+Coord Screen::get_cursor_pos() const
+{
+  Coord pos {-1,-1};
+  getyx(stdscr, pos.y, pos.x);
+  return pos;
+}
+
+//PRIVATE
 
 void Screen::set_blocking(BlockingMode mode)
 {

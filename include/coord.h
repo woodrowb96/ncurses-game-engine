@@ -1,5 +1,8 @@
 #ifndef COORD_H
 #define COORD_H
+
+#include <string>
+
 namespace ncurses_game_eng
 {
 
@@ -16,6 +19,8 @@ struct Coord
   bool operator==(const Coord& other) const;
   bool operator!=(const Coord& other) const;
 };
+
+std::string to_string(const Coord& coord);
 
 } //end namespace
 #endif
