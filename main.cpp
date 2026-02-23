@@ -1,6 +1,7 @@
 #include "screen.h"
 #include "coord.h"
 #include "window.h"
+#include "game.h"
 
 #include <string>
 
