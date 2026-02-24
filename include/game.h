@@ -1,3 +1,6 @@
+#ifndef GAME_H
+#define GAME_H
+
 #include "screen.h"
 #include "window.h"
 
@@ -26,7 +29,19 @@ class Game
 
   private:
     Screen m_screen;
-    Window* m_win;    //our main window (well expand how we manage windows later)
+    Window* m_win;    //for now well just use a single window
+
+    bool m_running {false};  //a game doesnt start running
+    int m_input {'\0'};
+    int m_output {'t'};
+
+    //game loop functions
+    void input();
+    void update();
+    void render();
+
 };
 
 }//end namespace
+
+#endif
