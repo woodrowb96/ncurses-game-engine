@@ -53,7 +53,7 @@ int Screen::get_ch(BlockingMode mode)
   set_blocking(mode);
   int ch = getch();
   set_blocking(DEFAULT_BLOCKING_MODE);
-  return ch;
+  return (ch == ERR) ? '\0' : ch;   //ncurses will return ERR if getch gets no input in NonBlocking mode
 }
 
 std::string Screen::get_str(int buffer_size)
@@ -94,7 +94,7 @@ Window* Screen::create_window(int width, int height, Coord pos)
   return win;
 }
 
-//SYTEM UTILS
+//SYSTEM UTILS
 
 void Screen::sleep(int ms)
 {
