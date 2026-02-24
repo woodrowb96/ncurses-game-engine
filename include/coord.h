@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace ncurses_game_eng
+namespace cursen
 {
 
 struct Coord

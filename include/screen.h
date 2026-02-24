@@ -7,7 +7,7 @@
 #include "coord.h"
 #include "window.h"
 
-namespace ncurses_game_eng
+namespace cursen
 {
 
 /********************************** SCREEN ***********************************/

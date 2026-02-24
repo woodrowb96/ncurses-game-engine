@@ -4,7 +4,7 @@
 #include "screen.h"
 #include "window.h"
 
-namespace ncurses_game_eng
+namespace cursen
 {
 
 /********************************** GAME ***********************************/

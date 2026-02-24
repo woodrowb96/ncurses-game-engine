@@ -1,7 +1,7 @@
 #include "test_game.h"
 #include "coord.h"
 
-using ncurses_game_eng::Coord;
+using cursen::Coord;
 
 //PUBLIC
 

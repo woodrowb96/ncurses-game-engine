@@ -5,11 +5,7 @@
 #include "window.h"
 #include "coord.h"
 
-using ncurses_game_eng::Game;
-using ncurses_game_eng::Window;
-using ncurses_game_eng::Coord;
-
-class TestGame : public Game
+class TestGame : public cursen::Game
 {
   public:
     TestGame();
@@ -34,9 +30,9 @@ class TestGame : public Game
 
     int m_screen_w;
     int m_screen_h;
-    Window* m_win;
+    cursen::Window* m_win;
     int m_input {NO_INPUT};
-    Coord m_pos {0,0};
+    cursen::Coord m_pos {0,0};
 };
 
 #endif

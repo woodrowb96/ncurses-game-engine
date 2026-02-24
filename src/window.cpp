@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 
-namespace ncurses_game_eng
+namespace cursen
 {
 //PUBLIC
 //WINDOW ATTRIBUTE GETTERS
