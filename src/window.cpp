@@ -8,16 +8,16 @@ namespace cursen
 //PUBLIC
 //WINDOW ATTRIBUTE GETTERS
 
-int Window::height() const { return m_height; }
+int Window::height() const { return height_; }
 
-int Window::width() const { return m_width; }
+int Window::width() const { return width_; }
 
-Coord Window::pos() const {return m_pos; }
+Coord Window::pos() const {return pos_; }
 
 Coord Window::cursor_pos() const
 {
   Coord pos {-1,-1};
-  getyx(m_win, pos.y, pos.x);
+  getyx(win_, pos.y, pos.x);
   return pos;
 }
 
@@ -25,43 +25,43 @@ Coord Window::cursor_pos() const
 
 void Window::clear()
 {
-  wclear(m_win);
+  wclear(win_);
 }
 
 void Window::refresh()
 {
-  wrefresh(m_win);
+  wrefresh(win_);
 }
 
 void Window::move_cursor(const Coord& pos)
 {
-  wmove(m_win, pos.y, pos.x);
+  wmove(win_, pos.y, pos.x);
 }
 
 void Window::add_ch(int ch)
 {
-  waddch(m_win, ch);
+  waddch(win_, ch);
 }
 
 void Window::add_str(const std::string& str)
 {
-  waddstr(m_win, str.c_str());
+  waddstr(win_, str.c_str());
 }
 
 //PRIVATE
 
 Window::Window(int width, int height, Coord pos)
   :
-  m_win(newwin(height,width,pos.y, pos.x)),   //create the window with ncurses
-  m_width(width),
-  m_height(height),
-  m_pos(pos)
+  win_(newwin(height,width,pos.y, pos.x)),   //create the window with ncurses
+  width_(width),
+  height_(height),
+  pos_(pos)
 {}
 
 Window::~Window()
 {
-  if(m_win) {
-    delwin(m_win);   //destroy the window through ncurses
+  if(win_) {
+    delwin(win_);   //destroy the window through ncurses
   }
 }
 

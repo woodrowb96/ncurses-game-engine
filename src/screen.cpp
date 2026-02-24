@@ -21,7 +21,7 @@ Screen::Screen()
 
 Screen::~Screen()
 {
-  for(Window* w : m_windows) {
+  for(Window* w : windows_) {
     if(w) {
       delete w;
     }
@@ -90,7 +90,7 @@ int Screen::width() const
 Window* Screen::create_window(int width, int height, Coord pos)
 {
   Window* win = new Window(width, height, pos);
-  m_windows.push_back(win);
+  windows_.push_back(win);
   return win;
 }
 

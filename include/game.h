@@ -53,8 +53,8 @@ class Game
     virtual void render() = 0;
 
     //member vars
-    Screen m_screen;
-    bool m_running {false};  //the game starts out not running
+    Screen screen_;
+    bool running_ {false};  //the game starts out not running
 };
 
 } //end namespace

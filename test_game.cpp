@@ -7,85 +7,85 @@ using cursen::Coord;
 
 TestGame::TestGame()
   :
-  m_screen_w(screen_width()),
-  m_screen_h(screen_height())
+  screen_w_(screen_width()),
+  screen_h_(screen_height())
 {
-  m_win = create_window(m_screen_w, m_screen_h);
-  m_pos = {m_screen_w/2, m_screen_h/2};
+  win_ = create_window(screen_w_, screen_h_);
+  pos_ = {screen_w_/2, screen_h_/2};
 }
 
 //PRIVATE
 
 void TestGame::input()
 {
-  m_input = get_input();
+  input_ = get_input();
 }
 
 void TestGame::update()
 {
-  switch(m_input)
+  switch(input_)
   {
     case QUIT: {
       stop();
       break;
     }
     case UP: {
-      m_pos.y -= Y_STEP;
+      pos_.y -= Y_STEP;
       break;
     }
     case DOWN: {
-      m_pos.y += Y_STEP;
+      pos_.y += Y_STEP;
       break;
     }
     case LEFT: {
-      m_pos.x -= X_STEP;
+      pos_.x -= X_STEP;
       break;
     }
     case RIGHT: {
-      m_pos.x += X_STEP;
+      pos_.x += X_STEP;
       break;
     }
   }
 
   //wrap our x position
-  if( m_pos.x > (m_screen_w - 1) ) {
-    m_pos.x = 0;
+  if( pos_.x > (screen_w_ - 1) ) {
+    pos_.x = 0;
   }
-  else if( m_pos.x < 0 ) {
-    m_pos.x = m_screen_w - 1;
+  else if( pos_.x < 0 ) {
+    pos_.x = screen_w_ - 1;
   }
 
   //wrap our y position
-  if( m_pos.y > (m_screen_h - 1) ) {
-    m_pos.y = 0;
+  if( pos_.y > (screen_h_ - 1) ) {
+    pos_.y = 0;
   }
-  else if( m_pos.y < 0 ) {
-    m_pos.y = m_screen_h - 1;
+  else if( pos_.y < 0 ) {
+    pos_.y = screen_h_ - 1;
   }
 }
 
 void TestGame::render()
 {
   //clear the screen
-  m_win->clear();
+  win_->clear();
 
   //draw our cube to the buffer
-  Coord cursor = m_pos;
-  m_win->move_cursor(cursor);
-  m_win->add_ch(SPRITE);
+  Coord cursor = pos_;
+  win_->move_cursor(cursor);
+  win_->add_ch(SPRITE);
 
   cursor.x += 1;
-  m_win->move_cursor(cursor);
-  m_win->add_ch(SPRITE);
+  win_->move_cursor(cursor);
+  win_->add_ch(SPRITE);
 
   cursor.y += 1;
-  m_win->move_cursor(cursor);
-  m_win->add_ch(SPRITE);
+  win_->move_cursor(cursor);
+  win_->add_ch(SPRITE);
 
   cursor.x -= 1;
-  m_win->move_cursor(cursor);
-  m_win->add_ch(SPRITE);
+  win_->move_cursor(cursor);
+  win_->add_ch(SPRITE);
 
   //push buffer onto screen
-  m_win->refresh();
+  win_->refresh();
 }

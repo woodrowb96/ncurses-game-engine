@@ -58,10 +58,10 @@ class Window
     ~Window();
 
     //member vars
-    WINDOW* m_win;  //pointer to the ncurses window object
-    int m_width;
-    int m_height;
-    Coord m_pos;    //position is relative to the screen coords
+    WINDOW* win_;  //pointer to the ncurses window object
+    int width_;
+    int height_;
+    Coord pos_;    //position is relative to the screen coords
 };
 
 } //end namespace

@@ -11,13 +11,13 @@ namespace cursen
 void Game::run()
 {
 
-  m_running = true;
-  while(m_running)
+  running_ = true;
+  while(running_)
   {
     input();
     update();
     render();
-    m_screen.sleep(16);
+    screen_.sleep(16);
   }
 }
 
@@ -27,28 +27,28 @@ void Game::run()
 
 int Game::get_input()
 {
-  return m_screen.get_ch(BlockingMode::NonBlocking);
+  return screen_.get_ch(BlockingMode::NonBlocking);
 }
 
 //control game flow
 void Game::stop()
 {
-  m_running = false;
+  running_ = false;
 }
 
 Window* Game::create_window(int width, int height, Coord pos)
 {
-  return m_screen.create_window(width, height, pos);
+  return screen_.create_window(width, height, pos);
 }
 
 int Game::screen_width() const
 {
-  return m_screen.width();
+  return screen_.width();
 }
 
 int Game::screen_height() const
 {
-  return m_screen.height();
+  return screen_.height();
 }
 
 //PRIVATE

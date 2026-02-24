@@ -28,11 +28,11 @@ class TestGame : public cursen::Game
     void update() override;
     void render() override;
 
-    int m_screen_w;
-    int m_screen_h;
-    cursen::Window* m_win;
-    int m_input {NO_INPUT};
-    cursen::Coord m_pos {0,0};
+    int screen_w_;
+    int screen_h_;
+    cursen::Window* win_;
+    int input_ {NO_INPUT};
+    cursen::Coord pos_ {0,0};
 };
 
 #endif

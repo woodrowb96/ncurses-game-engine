@@ -60,7 +60,7 @@ class Screen
     void set_blocking(BlockingMode mode);
 
     //member vars
-    std::vector<Window*> m_windows;
+    std::vector<Window*> windows_;
 };
 
 } //end namespace
