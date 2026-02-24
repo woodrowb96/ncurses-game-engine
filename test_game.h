@@ -12,17 +12,17 @@ class TestGame : public cursen::Game
 
   private:
     //input consts
-    static constexpr int UP {'w'};
-    static constexpr int DOWN {'s'};
-    static constexpr int LEFT {'a'};
-    static constexpr int RIGHT {'d'};
-    static constexpr int QUIT {'q'};
-    static constexpr int NO_INPUT {'\0'};
+    static constexpr int kUp {'w'};
+    static constexpr int kDown {'s'};
+    static constexpr int kLeft {'a'};
+    static constexpr int kRight {'d'};
+    static constexpr int kQuit {'q'};
+    static constexpr int kNoInput {'\0'};
     //movement consts
-    static constexpr int Y_STEP {1};
-    static constexpr int X_STEP {1};
+    static constexpr int kYStep {1};
+    static constexpr int kXStep {1};
     //output consts
-    static constexpr int SPRITE {'#'};
+    static constexpr int kSprite {'#'};
 
     void input() override;
     void update() override;
@@ -31,7 +31,7 @@ class TestGame : public cursen::Game
     int screen_w_;
     int screen_h_;
     cursen::Window* win_;
-    int input_ {NO_INPUT};
+    int input_ {kNoInput};
     cursen::Coord pos_ {0,0};
 };
 

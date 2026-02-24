@@ -16,7 +16,7 @@ Screen::Screen()
   noecho();              //dont echo typed chars to the screen
   keypad(stdscr, TRUE);  //lets us read special keys (funct, arrow ...)
   curs_set(0);           //dont print the cursor
-  set_blocking(DEFAULT_BLOCKING_MODE);
+  set_blocking(kDefaultBlockingMode);
 }
 
 Screen::~Screen()
@@ -52,7 +52,7 @@ int Screen::get_ch(BlockingMode mode)
 {
   set_blocking(mode);
   int ch = getch();
-  set_blocking(DEFAULT_BLOCKING_MODE);
+  set_blocking(kDefaultBlockingMode);
   return (ch == ERR) ? '\0' : ch;   //ncurses will return ERR if getch gets no input in NonBlocking mode
 }
 
@@ -62,7 +62,7 @@ std::string Screen::get_str(int buffer_size)
 
   set_blocking(BlockingMode::Blocking);     //make sure we are blocking
   getnstr(buffer.data(), buffer_size - 1);  //read the string into the buffer
-  set_blocking(DEFAULT_BLOCKING_MODE);      //go back to default blocking mode
+  set_blocking(kDefaultBlockingMode);      //go back to default blocking mode
 
   return std::string(buffer.data());
 }

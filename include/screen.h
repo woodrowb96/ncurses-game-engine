@@ -41,7 +41,7 @@ class Screen
     void add_str(const std::string& str);
 
     //user input
-    int get_ch(BlockingMode mode = DEFAULT_BLOCKING_MODE);
+    int get_ch(BlockingMode mode = kDefaultBlockingMode);
     std::string get_str(int buffer_size = 256);
 
     //screen attribute getters
@@ -55,7 +55,7 @@ class Screen
     Window* create_window(int width, int height, Coord pos = {0,0});
 
   private:
-    static constexpr BlockingMode DEFAULT_BLOCKING_MODE {BlockingMode::Blocking};
+    static constexpr BlockingMode kDefaultBlockingMode {BlockingMode::Blocking};
 
     void set_blocking(BlockingMode mode);
 

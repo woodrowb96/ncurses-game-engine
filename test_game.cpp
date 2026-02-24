@@ -25,24 +25,24 @@ void TestGame::update()
 {
   switch(input_)
   {
-    case QUIT: {
+    case kQuit: {
       stop();
       break;
     }
-    case UP: {
-      pos_.y -= Y_STEP;
+    case kUp: {
+      pos_.y -= kYStep;
       break;
     }
-    case DOWN: {
-      pos_.y += Y_STEP;
+    case kDown: {
+      pos_.y += kYStep;
       break;
     }
-    case LEFT: {
-      pos_.x -= X_STEP;
+    case kLeft: {
+      pos_.x -= kXStep;
       break;
     }
-    case RIGHT: {
-      pos_.x += X_STEP;
+    case kRight: {
+      pos_.x += kXStep;
       break;
     }
   }
@@ -72,19 +72,19 @@ void TestGame::render()
   //draw our cube to the buffer
   Coord cursor = pos_;
   win_->move_cursor(cursor);
-  win_->add_ch(SPRITE);
+  win_->add_ch(kSprite);
 
   cursor.x += 1;
   win_->move_cursor(cursor);
-  win_->add_ch(SPRITE);
+  win_->add_ch(kSprite);
 
   cursor.y += 1;
   win_->move_cursor(cursor);
-  win_->add_ch(SPRITE);
+  win_->add_ch(kSprite);
 
   cursor.x -= 1;
   win_->move_cursor(cursor);
-  win_->add_ch(SPRITE);
+  win_->add_ch(kSprite);
 
   //push buffer onto screen
   win_->refresh();
