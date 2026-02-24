@@ -14,9 +14,6 @@ namespace ncurses_game_eng
 class Game
 {
   public:
-    Game();
-    ~Game();
-
     //delete copy and move
     //we only want one Game
     Game(const Game& other) = delete;
@@ -27,18 +24,30 @@ class Game
     //game loop
     void run();
 
+  protected:
+    Game() = default;
+    virtual ~Game() = default;
+
+    //user input
+    int get_input();
+
+    //control game flow
+    void stop();
+
+    //screen interface functions
+    Window* create_window(int width, int height, Coord pos = {0,0});
+    int get_screen_width() const;
+    int get_screen_height() const;
+
   private:
     Screen m_screen;
-    Window* m_win;    //for now well just use a single window
 
     bool m_running {false};  //a game doesnt start running
-    int m_input {'\0'};
-    int m_output {'t'};
 
     //game loop functions
-    void input();
-    void update();
-    void render();
+    virtual void input() = 0;
+    virtual void update() = 0;
+    virtual void render() = 0;
 
 };
 

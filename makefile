@@ -11,7 +11,7 @@ CC = g++
 CFLAGS = -Wall -g -MMD -I${INC_DIR}
 
 #build objects
-OBJS = main.o screen.o coord.o window.o game.o
+OBJS = main.o test_game.o screen.o coord.o window.o game.o
 BUILD_OBJS =  ${addprefix ${BUILD_DIR}/, ${OBJS}}
 
 main: ${BUILD_OBJS}
@@ -34,6 +34,9 @@ ${BUILD_DIR}/window.o: ${SRC_DIR}/window.cpp | ${BUILD_DIR}
 
 ${BUILD_DIR}/game.o: ${SRC_DIR}/game.cpp | ${BUILD_DIR}
 	${CC} ${CFLAGS} -c ${SRC_DIR}/game.cpp -o $@
+
+${BUILD_DIR}/test_game.o: test_game.cpp | ${BUILD_DIR}
+	${CC} ${CFLAGS} -c test_game.cpp -o $@
 
 clean:
 	rm -rf ${BUILD_DIR} main

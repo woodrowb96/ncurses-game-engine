@@ -1,18 +1,10 @@
-#include "screen.h"
-#include "coord.h"
-#include "window.h"
-#include "game.h"
+#include "test_game.h"
 
 #include <string>
 
-using std::string;
-using std::to_string;
-
-using namespace ncurses_game_eng;
-
 int main()
 {
-  Game game;
-  game.run();
+  TestGame test_game;
+  test_game.run();
   return 0;
 }
