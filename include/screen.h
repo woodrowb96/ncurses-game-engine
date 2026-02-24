@@ -7,7 +7,8 @@
 #include "coord.h"
 #include "window.h"
 
-namespace ncurses_game_eng {
+namespace ncurses_game_eng
+{
 
 /********************************** SCREEN ***********************************/
 // The screen class is our game engines interface to the outside world.
@@ -56,11 +57,12 @@ class Screen
   private:
     static constexpr BlockingMode DEFAULT_BLOCKING_MODE {BlockingMode::Blocking};
 
-    std::vector<Window*> m_windows;
-
     void set_blocking(BlockingMode mode);
+
+    //member vars
+    std::vector<Window*> m_windows;
 };
 
-} //end namespace ncurses_game_eng
+} //end namespace
 
 #endif

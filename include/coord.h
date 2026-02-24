@@ -23,4 +23,5 @@ struct Coord
 std::string to_string(const Coord& coord);
 
 } //end namespace
+
 #endif

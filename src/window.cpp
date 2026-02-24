@@ -65,4 +65,4 @@ Window::~Window()
   }
 }
 
-} //endnamespace
+} //end namespace

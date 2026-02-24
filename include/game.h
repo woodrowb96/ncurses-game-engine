@@ -8,7 +8,14 @@ namespace ncurses_game_eng
 {
 
 /********************************** GAME ***********************************/
-// The game class
+// The game is the abstract parent class users use to derive their custom games from.
+//
+// The game class provides users a public run() function to start the game loop.
+// Users interface with the game loop through three pure virtual functions
+//  - input()
+//  - update()
+//  - render()
+// Users can use these to write their custom game logic.
 /********************************************************************************/
 
 class Game
@@ -40,17 +47,16 @@ class Game
     int get_screen_height() const;
 
   private:
-    Screen m_screen;
-
-    bool m_running {false};  //a game doesnt start running
-
     //game loop functions
     virtual void input() = 0;
     virtual void update() = 0;
     virtual void render() = 0;
 
+    //member vars
+    Screen m_screen;
+    bool m_running {false};  //the game starts out not running
 };
 
-}//end namespace
+} //end namespace
 
 #endif

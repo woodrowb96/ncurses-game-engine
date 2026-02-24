@@ -57,13 +57,13 @@ class Window
     Window(int width, int height, Coord pos);
     ~Window();
 
-    //window and its attributes
+    //member vars
     WINDOW* m_win;  //pointer to the ncurses window object
     int m_width;
     int m_height;
-    Coord m_pos;    //window position relative to the stdscrn coords
+    Coord m_pos;    //position is relative to the screen coords
 };
 
-} //endnamespace
+} //end namespace
 
 #endif
