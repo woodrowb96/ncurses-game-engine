@@ -7,8 +7,8 @@ using ncurses_game_eng::Coord;
 
 TestGame::TestGame()
   :
-  m_screen_w(get_screen_width()),
-  m_screen_h(get_screen_height())
+  m_screen_w(screen_width()),
+  m_screen_h(screen_height())
 {
   m_win = create_window(m_screen_w, m_screen_h);
   m_pos = {m_screen_w/2, m_screen_h/2};

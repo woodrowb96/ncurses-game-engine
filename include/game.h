@@ -43,8 +43,8 @@ class Game
 
     //screen interface functions
     Window* create_window(int width, int height, Coord pos = {0,0});
-    int get_screen_width() const;
-    int get_screen_height() const;
+    int screen_width() const;
+    int screen_height() const;
 
   private:
     //game loop functions

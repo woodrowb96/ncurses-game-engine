@@ -45,8 +45,8 @@ class Screen
     std::string get_str(int buffer_size = 256);
 
     //screen attribute getters
-    int get_height() const;
-    int get_width() const;
+    int height() const;
+    int width() const;
 
     //system utils
     void sleep(int ms);

@@ -41,10 +41,10 @@ class Window
     Window& operator=(Window&& other) = delete;
 
     //window attribute getters
-    int get_height() const;
-    int get_width() const;
-    Coord get_pos() const;          //window position relative to the stdscrn
-    Coord get_cursor_pos() const;
+    int height() const;
+    int width() const;
+    Coord pos() const;          //window position relative to the stdscrn
+    Coord cursor_pos() const;
 
     //user output
     void clear();

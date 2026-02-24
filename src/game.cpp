@@ -41,14 +41,14 @@ Window* Game::create_window(int width, int height, Coord pos)
   return m_screen.create_window(width, height, pos);
 }
 
-int Game::get_screen_width() const
+int Game::screen_width() const
 {
-  return m_screen.get_width();
+  return m_screen.width();
 }
 
-int Game::get_screen_height() const
+int Game::screen_height() const
 {
-  return m_screen.get_height();
+  return m_screen.height();
 }
 
 //PRIVATE

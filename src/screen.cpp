@@ -69,7 +69,7 @@ std::string Screen::get_str(int buffer_size)
 
 //SCREEN ATTRIBUTE GETTERS
 
-int Screen::get_height() const
+int Screen::height() const
 {
   int h {-1};
   [[maybe_unused]] int w {-1};
@@ -77,7 +77,7 @@ int Screen::get_height() const
   return h;
 }
 
-int Screen::get_width() const
+int Screen::width() const
 {
   [[maybe_unused]] int h {-1};
   int w {-1};
