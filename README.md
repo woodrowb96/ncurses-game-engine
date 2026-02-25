@@ -16,11 +16,13 @@ The engine is structured around a few core components:
         to interface into the game loop and write their custom game logic.
         - A simple `get_input()` function to get input chars from users.
         - An interface to the Screen class so users can create Windows.
+
 - **Screen** - The main interface to the terminal.
     - The Screen Class:
         - Manages ncurses initialization and cleanup.
         - Lets us get user input (in Blocking and NonBlocking modes).
         - Creates and destroys all Windows.
+
 - **Window** - The main interface users use to print output to the screen.
     - The Window Class provides users a way to:
         - Move the cursor (our current printing location) around the screen.
@@ -29,6 +31,7 @@ The engine is structured around a few core components:
     - Note: Windows need to be created through the Screen `create_window()` factory.<br>
         - We don't want windows to exist unless we already have a Screen initialized, <br>
         so we tie their creation, ownership and destruction to the Screen Class.
+
 - **Coord** - A 2D coordinate struct with arithmetic and logical comparison operators.
 
 A typical user game would have the following structure:
