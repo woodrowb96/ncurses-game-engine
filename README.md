@@ -61,6 +61,8 @@ The demo prints a 2x2 cube to screen and lets the user move it around.
     - Press the 'w' 'a' 's' 'd' keys to move the cube up, left, down and right.
     - Press the 'q' key to exit the game
 
+https://github.com/user-attachments/assets/b104464c-dc6c-4238-ac5f-878ad6873436
+
 ## Build
 
 You can use the following commands to either build, cleanup or run the TestGame demo:
