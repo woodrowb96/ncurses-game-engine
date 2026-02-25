@@ -12,7 +12,7 @@ The engine is structured around a few core components:
 - **Game** - An abstract base class users can use to derive their custom games from.
     - The Game Class provides users:
         - A public `run()` function to start their games.
-        - Three pure virtual functions (`input()`, `update()` and `render()`) they can use <br>
+        - Three pure virtual functions (`input()`, `update()` and `render()`) they can use
         to interface into the game loop and write their custom game logic.
         - A simple `get_input()` function to get input chars from users.
         - An interface to the Screen class so users can create Windows.
@@ -28,8 +28,8 @@ The engine is structured around a few core components:
         - Move the cursor (our current printing location) around the screen.
         - Add strings and chars to the screen.
         - Clear and refresh the screen.
-    - Note: Windows need to be created through the Screen `create_window()` factory.<br>
-        - We don't want windows to exist unless we already have a Screen initialized, <br>
+    - Note: Windows need to be created through the Screen `create_window()` factory.
+        - We don't want windows to exist unless we already have a Screen initialized,
         so we tie their creation, ownership and destruction to the Screen Class.
 
 - **Coord** - A 2D coordinate struct with arithmetic and logical comparison operators.
