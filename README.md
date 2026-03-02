@@ -3,7 +3,6 @@
 A TUI game engine built in C++ and ncurses.
 
 Note: This project is a work in progress and is being actively developed.
-* Active development is being done on the dev branch.
 
 ## Current Architecture
 
